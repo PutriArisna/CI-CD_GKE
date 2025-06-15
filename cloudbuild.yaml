@@ -23,8 +23,8 @@ steps:
     args:
       - '-c'
       - |
-        kubectl apply -f kubernetes/deployment.yaml
-        kubectl apply -f kubernetes/service.yaml
+        kubectl apply -f Kubernetes/deployment.yaml
+        kubectl apply -f Kubernetes/service.yaml
 
 images:
   - 'gcr.io/fashion-cicd-project-463004/fashion-recomm:latest'
