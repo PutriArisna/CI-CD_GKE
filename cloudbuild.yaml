@@ -27,4 +27,4 @@ steps:
         kubectl apply -f kubernetes/service.yaml
 
 images:
-  - 'gcr.io/trans-equator-459807-e6/fastapi-app:latest'
+  - 'gcr.io/trans-equator-459807-e6/fashion-recomm:latest'
