@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fashion Recommendation</title>
+</head>
+<body>
+    <h2>Enter Your Body Measurements</h2>
+    <form action="/recommend-form" method="post">
+        <label>Bust (cm):</label><br>
+        <input type="number" name="bust" step="any" required><br><br>
+
+        <label>Waist (cm):</label><br>
+        <input type="number" name="waist" step="any" required><br><br>
+
+        <label>Hips (cm):</label><br>
+        <input type="number" name="hips" step="any" required><br><br>
+
+        <label>High Hip (cm):</label><br>
+        <input type="number" name="high_hip" step="any" required><br><br>
+
+        <input type="submit" value="Get Recommendation">
+    </form>
+
+    {% if body_type %}
+        <h3>Detected Body Type: {{ body_type }}</h3>
+        <p><strong>Recommendation:</strong></p>
+        <div>{{ recommendation | safe }}</div>
+    {% endif %}
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>

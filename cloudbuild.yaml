@@ -1,0 +1,30 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+steps:
+  # build docker image
+  - name: 'gcr.io/cloud-builders/docker' # image prebuilt oleh Google
+    args: ['build', '-t', 'gcr.io/trans-equator-459807-e6/fashion-recomm:latest', '.']
+
+  # push image to container registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/trans-equator-459807-e6/fashion-recomm:latest']
+    
+  # authenticate to GKE
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        gcloud container clusters get-credentials ci-cd-cluster --zone us-east1 --project trans-equator-459807-e6
+
+  # deploy to GKE
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        kubectl apply -f kubernetes/deployment.yaml
+        kubectl apply -f kubernetes/service.yaml
+
+images:
+  - 'gcr.io/trans-equator-459807-e6/fastapi-app:latest'
