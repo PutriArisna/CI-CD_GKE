@@ -5,6 +5,7 @@ metadata:
 spec:
   selector:
     app: fashion-recomm
+  type: LoanBalancer
   ports:
   - protocol: TCP
     port: 80
