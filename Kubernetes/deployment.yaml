@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fashion-recomm
-        image: putriarisna/fashion-recomm:latest
+        image: gcr.io/fashion-cicd-project-463004/fashion-recomm:latest
         ports:
         - containerPort: 80
         env:
