@@ -3,11 +3,11 @@ options:
 steps:
   # build docker image
   - name: 'gcr.io/cloud-builders/docker' # image prebuilt oleh Google
-    args: ['build', '-t', 'gcr.io/trans-equator-459807-e6/fashion-recomm:latest', '.']
+    args: ['build', '-t', 'gcr.io/fashion-cicd-project-463004/fashion-recomm:latest', '.']
 
   # push image to container registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/trans-equator-459807-e6/fashion-recomm:latest']
+    args: ['push', 'gcr.io/fashion-cicd-project-463004/fashion-recomm:latest']
     
   # authenticate to GKE
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -15,7 +15,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials ci-cd-cluster --zone us-east1 --project trans-equator-459807-e6
+        gcloud container clusters get-credentials ci-cd-cluster --zone us-east1-c --project fashion-cicd-project-463004
 
   # deploy to GKE
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -27,4 +27,4 @@ steps:
         kubectl apply -f kubernetes/service.yaml
 
 images:
-  - 'gcr.io/trans-equator-459807-e6/fashion-recomm:latest'
+  - 'gcr.io/fashion-cicd-project-463004/fashion-recomm:latest'
