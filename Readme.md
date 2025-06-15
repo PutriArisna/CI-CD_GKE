@@ -128,7 +128,7 @@ spec:
     targetPort: 80
 ```
 ---
-## 🌐 5. Get External IP
+## 🌐 5. Get External IP (EXTERNAL-IP: 35.237.214.150 )
 After the build completes, get the external IP address:
 ```
 kubectl get service fashion-recomm
